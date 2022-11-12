@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -18,6 +18,7 @@
   "homepage": "https://github.com/Feasibility-Study-Team/fs-back#readme",
   "devDependencies": {
     "express": "^4.18.2",
+    "nodemon": "^2.0.20",
     "prisma": "^4.6.1"
   },
   "dependencies": {
