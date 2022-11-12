@@ -15,5 +15,14 @@
   "bugs": {
     "url": "https://github.com/Feasibility-Study-Team/fs-back/issues"
   },
-  "homepage": "https://github.com/Feasibility-Study-Team/fs-back#readme"
+  "homepage": "https://github.com/Feasibility-Study-Team/fs-back#readme",
+  "devDependencies": {
+    "express": "^4.18.2",
+    "prisma": "^4.6.1"
+  },
+  "dependencies": {
+    "@prisma/client": "^4.6.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3"
+  }
 }
