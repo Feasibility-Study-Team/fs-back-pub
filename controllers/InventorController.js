@@ -1,0 +1,3 @@
+const getInventor = (req, res) => {
+    
+}
