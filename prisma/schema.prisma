@@ -10,8 +10,70 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model inventor{
+model admin {
+  id_admin Int @id @default(autoincrement())
+  username String
+  password String
+}
+
+model institusi {
+  id_institusi Int @id @default(autoincrement())
+  nama_institusi String
+  alamat String
+  nomor String
+}
+
+model inventor {
   id_inventor Int @id @default(autoincrement())
+  username String
+  email String
+  nama_lengkap String
+  id_institusi Int
+  password String
+  nomor String
+}
+
+model alat {
+  id_alat Int @id @default(autoincrement())
+  nama_alat String
+  deskripsi_alat String
+  id_inventor Int
+  gambar_alat String
+}
+
+model aspek {
+  id_aspek Int @id @default(autoincrement())
+  nama String
+}
+
+model parameter {
+  id_parameter Int @id @default(autoincrement())
+  nama String
+  id_aspek Int
+}
+
+model data_aspek {
+  id_data_aspek Int @id @default(autoincrement())
+  nama String
+  id_parameter Int
+}
+
+model pengujian {
+  id_pengujian Int @id @default(autoincrement())
+  id_aspek Int
+  id_alat Int
+  status String
+  hasil_uji String
+}
+
+model transaksi {
+  id_transaksi Int @id @default(autoincrement())
+  id_pengujian Int
+  id_penguji Int
+}
+
+model penguji {
+  id_penguji Int @id @default(autoincrement())
   username String
   email String
   nama_lengkap String
