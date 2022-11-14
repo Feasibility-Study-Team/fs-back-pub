@@ -4,6 +4,9 @@ GET http://localhost:3000/admin/inventors
 GET http://localhost:3000/admin/penguji
 
 ###
+GET http://localhost:3000/admin/alat
+
+###
 GET http://localhost:3000/admin/inventors/1
 
 ###
