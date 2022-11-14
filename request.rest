@@ -1,0 +1,33 @@
+GET http://localhost:3000/admin/inventors
+
+###
+GET http://localhost:3000/admin/inventors/1
+
+###
+POST http://localhost:3000/admin/inventors
+Content-Type: application/json
+
+{
+    "username":"nasuru",
+    "email":"nasuru@gmail.com",
+    "nama_lengkap":"nasuru nasuru",
+    "id_institusi":1,
+    "password":"nasuru123",
+    "nomor":"0812821287"
+}
+
+###
+PUT http://localhost:3000/admin/inventors/1
+Content-Type: application/json
+
+{
+    "username":"nasuru update",
+    "email":"nasuru@gmail.com",
+    "nama_lengkap":"nasuru nasuru",
+    "id_institusi":1,
+    "password":"nasuru123",
+    "nomor":"0812821287"
+}
+
+###
+DELETE http://localhost:3000/admin/inventors/1
