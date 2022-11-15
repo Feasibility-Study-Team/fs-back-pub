@@ -5,6 +5,7 @@ const InventorRoute = require('./routes/InventorRoute');
 const PengujiRoute =  require('./routes/PengujiRoute')
 const AlatRoute = require('./routes/AlatRoute');
 const InstitusiRoute = require('./routes/InstitusiRoute');
+const AspekRoute = require('./routes/AspekRoute');
 
 dotenv.config()
 
@@ -16,6 +17,7 @@ app.use(InventorRoute)
 app.use(PengujiRoute)
 app.use(AlatRoute)
 app.use(InstitusiRoute)
+app.use(AspekRoute)
 
 app.listen(process.env.APP_PORT, ()=> {
     console.log('Server berjalan pada port 3000');
