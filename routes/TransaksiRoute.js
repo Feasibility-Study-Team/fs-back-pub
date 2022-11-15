@@ -9,10 +9,10 @@ const {
 
 const router = express.Router()
 
-router.get('/admin/aspek', getTransaksi)
-router.get('/admin/aspek/:id', getTransaksiById)
-router.post('/admin/aspek', createTransaksi)
-router.put('/admin/aspek/:id', updateTransaksi)
-router.delete('/admin/aspek/:id', deleteTransaksi)
+router.get('/admin/transaksi', getTransaksi)
+router.get('/admin/transaksi/:id', getTransaksiById)
+router.post('/admin/transaksi', createTransaksi)
+router.put('/admin/transaksi/:id', updateTransaksi)
+router.delete('/admin/transaksi/:id', deleteTransaksi)
 
 module.exports = router
