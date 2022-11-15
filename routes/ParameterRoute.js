@@ -9,10 +9,10 @@ const {
 
 const router = express.Router()
 
-router.get('/admin/aspek', getParameter)
-router.get('/admin/aspek/:id', getParameterById)
-router.post('/admin/aspek', createParameter)
-router.put('/admin/aspek/:id', updateParameter)
-router.delete('/admin/aspek/:id', deleteParameter)
+router.get('/admin/parameter', getParameter)
+router.get('/admin/parameter/:id', getParameterById)
+router.post('/admin/parameter', createParameter)
+router.put('/admin/parameter/:id', updateParameter)
+router.delete('/admin/parameter/:id', deleteParameter)
 
 module.exports = router
