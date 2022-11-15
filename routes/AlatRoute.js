@@ -1,5 +1,11 @@
 const express = require('express');
-const { getAlat, getAlatById, createAlat, updateAlat, deleteAlat } = require('../controllers/AlatController');
+const { 
+    getAlat, 
+    getAlatById, 
+    createAlat, 
+    updateAlat, 
+    deleteAlat 
+} = require('../controllers/AlatController');
 
 const router = express.Router()
 
