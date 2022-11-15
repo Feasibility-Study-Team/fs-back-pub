@@ -13,6 +13,9 @@ GET http://localhost:3000/admin/institusi
 GET http://localhost:3000/admin/aspek
 
 ###
+GET http://localhost:3000/admin/parameter
+
+###
 GET http://localhost:3000/admin/inventors/1
 
 ###
