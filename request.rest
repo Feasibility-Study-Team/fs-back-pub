@@ -22,6 +22,9 @@ GET http://localhost:3000/admin/data-aspek
 GET http://localhost:3000/admin/transaksi
 
 ###
+GET http://localhost:3000/admin/pengujian
+
+###
 GET http://localhost:3000/admin/inventors/1
 
 ###

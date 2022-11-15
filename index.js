@@ -9,6 +9,7 @@ const AspekRoute = require('./routes/AspekRoute');
 const ParameterRoute = require('./routes/ParameterRoute')
 const DataAspekRoute = require('./routes/DataAspekRoute');
 const TransaksiRoute = require('./routes/TransaksiRoute')
+const PengujianRoute = require('./routes/PengujianRoute');
 
 dotenv.config()
 
@@ -24,6 +25,7 @@ app.use(AspekRoute)
 app.use(ParameterRoute)
 app.use(DataAspekRoute)
 app.use(TransaksiRoute)
+app.use(PengujianRoute)
 
 app.listen(process.env.APP_PORT, ()=> {
     console.log('Server berjalan pada port 3000');
