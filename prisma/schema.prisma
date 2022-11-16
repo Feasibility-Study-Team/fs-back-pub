@@ -24,7 +24,7 @@ model institusi {
 }
 
 model inventor {
-  id_inventor Int @id @default(autoincrement())
+  id_inventor String @id @default(uuid())
   username String
   email String
   nama_lengkap String

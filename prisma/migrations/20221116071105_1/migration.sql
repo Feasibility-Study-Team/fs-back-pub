@@ -18,6 +18,19 @@ CREATE TABLE "institusi" (
 );
 
 -- CreateTable
+CREATE TABLE "inventor" (
+    "id_inventor" TEXT NOT NULL,
+    "username" TEXT NOT NULL,
+    "email" TEXT NOT NULL,
+    "nama_lengkap" TEXT NOT NULL,
+    "id_institusi" INTEGER NOT NULL,
+    "password" TEXT NOT NULL,
+    "nomor" TEXT NOT NULL,
+
+    CONSTRAINT "inventor_pkey" PRIMARY KEY ("id_inventor")
+);
+
+-- CreateTable
 CREATE TABLE "alat" (
     "id_alat" SERIAL NOT NULL,
     "nama_alat" TEXT NOT NULL,
