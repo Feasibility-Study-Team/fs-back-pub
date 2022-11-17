@@ -11,13 +11,13 @@ datasource db {
 }
 
 model admin {
-  id_admin Int @id @default(autoincrement())
+  id_admin String @id @default(uuid())
   username String
   password String
 }
 
 model institusi {
-  id_institusi Int @id @default(autoincrement())
+  id_institusi String @id @default(uuid())
   nama_institusi String
   alamat String
   nomor String
@@ -28,56 +28,57 @@ model inventor {
   username String
   email String
   nama_lengkap String
-  id_institusi Int
+  id_institusi String
   password String
   nomor String
+  photo String
 }
 
 model alat {
-  id_alat Int @id @default(autoincrement())
+  id_alat String @id @default(uuid())
   nama_alat String
   deskripsi_alat String
-  id_inventor Int
+  id_inventor String
   gambar_alat String
 }
 
 model aspek {
-  id_aspek Int @id @default(autoincrement())
+  id_aspek String @id @default(uuid())
   nama String
 }
 
 model parameter {
-  id_parameter Int @id @default(autoincrement())
+  id_parameter String @id @default(uuid())
   nama String
-  id_aspek Int
+  id_aspek String
 }
 
 model data_aspek {
-  id_data_aspek Int @id @default(autoincrement())
+  id_data_aspek String @id @default(uuid())
   nama String
-  id_parameter Int
+  id_parameter String
 }
 
 model pengujian {
-  id_pengujian Int @id @default(autoincrement())
-  id_aspek Int
-  id_alat Int
+  id_pengujian String @id @default(uuid())
+  id_aspek String
+  id_alat String
   status String
   hasil_uji String
 }
 
 model transaksi {
-  id_transaksi Int @id @default(autoincrement())
-  id_pengujian Int
-  id_penguji Int
+  id_transaksi String @id @default(uuid())
+  id_pengujian String
+  id_penguji String
 }
 
 model penguji {
-  id_penguji Int @id @default(autoincrement())
+  id_penguji String @id @default(uuid())
   username String
   email String
   nama_lengkap String
-  id_institusi Int
+  id_institusi String
   password String
   nomor String
 }
