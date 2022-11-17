@@ -26,7 +26,7 @@ const getInventorById = async (req, res) => {
 }
 
 const createInventor = async (req, res) => {
-    const { username, email, nama_lengkap, id_institusi, password, nomor } = req.body
+    const { username, email, nama_lengkap, id_institusi, password, nomor, photo } = req.body
     try {
         const inventor = await prisma.inventor.create({
             data: {
@@ -35,7 +35,8 @@ const createInventor = async (req, res) => {
                 nama_lengkap: nama_lengkap,
                 id_institusi: id_institusi,
                 password: password,
-                nomor: nomor
+                nomor: nomor,
+                photo: photo
             }
         })
         res.status(200).json(inventor)
@@ -45,7 +46,7 @@ const createInventor = async (req, res) => {
 }
 
 const updateInventor = async (req, res) => {
-    const { username, email, nama_lengkap, id_institusi, password, nomor } = req.body
+    const { username, email, nama_lengkap, id_institusi, password, nomor, photo } = req.body
     try {
         const inventor = await prisma.inventor.update({
             where: {
@@ -57,7 +58,8 @@ const updateInventor = async (req, res) => {
                 nama_lengkap: nama_lengkap,
                 id_institusi: id_institusi,
                 password: password,
-                nomor: nomor
+                nomor: nomor,
+                photo: photo
             }
         })
         res.status(200).json(inventor)
