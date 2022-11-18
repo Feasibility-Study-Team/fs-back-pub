@@ -15,7 +15,7 @@ const getDataAspekById = async (req, res) => {
     try {
         const response = await prisma.data_aspek.findUnique({
             where:{
-                id_data_aspek: Number(req.params.id)
+                id_data_aspek: req.params.id
             }
         })
         res.status(200).json(response)
@@ -44,7 +44,7 @@ const updateDataAspek = async (req, res) => {
     try {
         const data_aspek = await prisma.data_aspek.update({
             where:{
-                id_data_aspek: Number(req.params.id)
+                id_data_aspek: req.params.id
             },
             data: {
                 nama_data_aspek: nama_data_aspek,
@@ -61,7 +61,7 @@ const deleteDataAspek = async (req, res) => {
     try {
         const data_aspek = await prisma.data_aspek.delete({
             where:{
-                id_data_aspek: Number(req.params.id)
+                id_data_aspek: req.params.id
             }
         })
         res.status(200).json(data_aspek)

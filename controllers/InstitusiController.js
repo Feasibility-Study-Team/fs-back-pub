@@ -15,7 +15,7 @@ const getInstitusiById = async (req, res) => {
     try {
         const response = await prisma.institusi.findUnique({
             where:{
-                id_institusi: Number(req.params.id)
+                id_institusi: req.params.id
             }
         })
         res.status(200).json(response)
@@ -45,7 +45,7 @@ const updateInstitusi = async (req, res) => {
     try {
         const institusi = await prisma.institusi.update({
             where:{
-                id_institusi: Number(req.params.id)
+                id_institusi: req.params.id
             },
             data: {
                 nama_institusi: nama_institusi,
@@ -63,7 +63,7 @@ const deleteInstitusi = async (req, res) => {
     try {
         const institusi = await prisma.institusi.delete({
             where:{
-                id_institusi: Number(req.params.id)
+                id_institusi: req.params.id
             }
         })
         res.status(200).json(institusi)

@@ -15,7 +15,7 @@ const getParameterById = async (req, res) => {
     try {
         const response = await prisma.parameter.findUnique({
             where:{
-                id_parameter: Number(req.params.id)
+                id_parameter: req.params.id
             }
         })
         res.status(200).json(response)
@@ -44,7 +44,7 @@ const updateParameter = async (req, res) => {
     try {
         const parameter = await prisma.parameter.update({
             where:{
-                id_parameter: Number(req.params.id)
+                id_parameter: req.params.id
             },
             data: {
                 nama_parameter: nama_parameter,
@@ -61,7 +61,7 @@ const deleteParameter = async (req, res) => {
     try {
         const parameter = await prisma.parameter.delete({
             where:{
-                id_parameter: Number(req.params.id)
+                id_parameter: req.params.id
             }
         })
         res.status(200).json(parameter)

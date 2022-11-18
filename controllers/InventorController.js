@@ -16,7 +16,7 @@ const getInventorById = async (req, res) => {
     try {
         const response = await prisma.inventor.findUnique({
             where:{
-                id_inventor: Number(req.params.id)
+                id_inventor: req.params.id
             }
         })
         res.status(200).json(response)
@@ -50,7 +50,7 @@ const updateInventor = async (req, res) => {
     try {
         const inventor = await prisma.inventor.update({
             where: {
-                id_inventor: Number(req.params.id)
+                id_inventor: req.params.id
             },
             data: {
                 username: username,
@@ -72,7 +72,7 @@ const deleteInventor = async (req, res) => {
     try {
         const inventor = await prisma.inventor.delete({
             where: {
-                id_inventor: Number(req.params.id)
+                id_inventor: req.params.id
             }
         })
         res.status(200).json(inventor)

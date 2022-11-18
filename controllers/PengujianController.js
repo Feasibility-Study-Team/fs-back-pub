@@ -15,7 +15,7 @@ const getPengujianById = async (req, res) => {
     try {
         const response = await prisma.pengujian.findUnique({
             where:{
-                id_pengujian: Number(req.params.id)
+                id_pengujian: req.params.id
             }
         })
         res.status(200).json(response)
@@ -46,7 +46,7 @@ const updatePengujian = async (req, res) => {
     try {
         const pengujian = await prisma.pengujian.update({
             where:{
-                id_pengujian: Number(req.params.id)
+                id_pengujian: req.params.id
             },
             data: {
                 id_aspek: id_aspek,
@@ -65,7 +65,7 @@ const deletePengujian = async (req, res) => {
     try {
         const pengujian = await prisma.pengujian.delete({
             where:{
-                id_pengujian: Number(req.params.id)
+                id_pengujian: req.params.id
             }
         })
         res.status(200).json(pengujian)

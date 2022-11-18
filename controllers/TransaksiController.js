@@ -15,7 +15,7 @@ const getTransaksiById = async (req, res) => {
     try {
         const response = await prisma.transaksi.findUnique({
             where:{
-                id_transaksi: Number(req.params.id)
+                id_transaksi: req.params.id
             }
         })
         res.status(200).json(response)
@@ -44,7 +44,7 @@ const updateTransaksi = async (req, res) => {
     try {
         const transaksi = await prisma.transaksi.update({
             where:{
-                id_transaksi: Number(req.params.id)
+                id_transaksi: req.params.id
             },
             data: {
                 id_pengujian: id_pengujian,
@@ -61,7 +61,7 @@ const deleteTransaksi = async (req, res) => {
     try {
         const transaksi = await prisma.transaksi.delete({
             where:{
-                id_transaksi: Number(req.params.id)
+                id_transaksi: req.params.id
             }
         })
         res.status(200).json(transaksi)

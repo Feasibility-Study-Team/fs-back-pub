@@ -15,7 +15,7 @@ const getAlatById = async (req, res) => {
     try {
         const response = await prisma.alat.findUnique({
             where:{
-                id_alat: Number(req.params.id)
+                id_alat: req.params.id
             }
         })
         res.status(200).json(response)
@@ -46,7 +46,7 @@ const updateAlat = async (req, res) => {
     try {
         const alat = await prisma.alat.update({
             where:{
-                id_alat: Number(req.params.id)
+                id_alat: req.params.id
             },
             data: {
                 nama_alat: nama_alat,
@@ -65,7 +65,7 @@ const deleteAlat = async (req, res) => {
     try {
         const alat = await prisma.alat.delete({
             where:{
-                id_alat: Number(req.params.id)
+                id_alat: req.params.id
             }
         })
         res.status(200).json(alat)

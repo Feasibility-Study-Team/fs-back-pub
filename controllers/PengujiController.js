@@ -15,7 +15,7 @@ const getPengujiById = async (req, res) => {
     try {
         const response = await prisma.penguji.findUnique({
             where:{
-                id_penguji: Number(req.params.id)
+                id_penguji: req.params.id
             }
         })
         res.status(200).json(response)
@@ -48,7 +48,7 @@ const updatePenguji = async (req, res) => {
     try {
         const penguji = await prisma.penguji.update({
             where:{
-                id_penguji: Number(req.params.id)
+                id_penguji: req.params.id
             },
             data: {
                 username: username,
@@ -69,7 +69,7 @@ const deletePenguji = async (req, res) => {
     try {
         const penguji = await prisma.penguji.delete({
             where:{
-                id_penguji: Number(req.params.id)
+                id_penguji: req.params.id
             }
         })
         res.status(200).json(penguji)
