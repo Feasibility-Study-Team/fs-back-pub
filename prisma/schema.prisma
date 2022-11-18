@@ -12,7 +12,7 @@ datasource db {
 
 model admin {
   id_admin String @id @default(uuid())
-  username String
+  username String @unique
   password String
 }
 
@@ -25,8 +25,8 @@ model institusi {
 
 model inventor {
   id_inventor String @id @default(uuid())
-  username String
-  email String
+  username String @unique
+  email String @unique
   nama_lengkap String
   id_institusi String
   password String
@@ -38,7 +38,7 @@ model alat {
   id_alat String @id @default(uuid())
   nama_alat String
   deskripsi_alat String
-  id_inventor String
+  id_inventor String 
   gambar_alat String
 }
 
@@ -75,8 +75,8 @@ model transaksi {
 
 model penguji {
   id_penguji String @id @default(uuid())
-  username String
-  email String
+  username String @unique
+  email String @unique
   nama_lengkap String
   id_institusi String
   password String
