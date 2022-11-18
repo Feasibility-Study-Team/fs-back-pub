@@ -3,6 +3,6 @@ const loginInventor = require('../controllers/LoginController');
 
 const router = express.Router()
 
-router.get('/login', loginInventor)
+router.post('/login', loginInventor)
 
 module.exports = router
