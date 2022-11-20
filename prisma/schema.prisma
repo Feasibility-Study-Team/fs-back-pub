@@ -21,6 +21,8 @@ model institusi {
   nama_institusi String
   alamat String
   nomor String
+  inventor inventor[]
+  penguji penguji[]
 }
 
 model inventor {
@@ -28,49 +30,60 @@ model inventor {
   username String @unique
   email String @unique
   nama_lengkap String
-  id_institusi String
+  institusi institusi? @relation(fields: [id_institusi], references: [id_institusi])
+  id_institusi String?
   password String
   nomor String
   photo String
+  alat alat[]
 }
 
 model alat {
   id_alat String @id @default(uuid())
   nama_alat String
   deskripsi_alat String
-  id_inventor String 
+  inventor inventor? @relation(fields: [id_inventor], references: [id_inventor])
+  id_inventor String?
   gambar_alat String
+  pengujian pengujian[]
 }
 
 model aspek {
   id_aspek String @id @default(uuid())
   nama String
+  parameter parameter[]
+  pengujian pengujian[]
 }
 
 model parameter {
   id_parameter String @id @default(uuid())
   nama String
+  aspek aspek @relation(fields: [id_aspek], references: [id_aspek])
   id_aspek String
+  data_aspek data_aspek[]
 }
 
 model data_aspek {
   id_data_aspek String @id @default(uuid())
   nama String
+  parameter parameter @relation(fields: [id_parameter], references: [id_parameter])
   id_parameter String
 }
 
 model pengujian {
   id_pengujian String @id @default(uuid())
-  id_aspek String
+  aspek aspek[]
+  alat alat @relation(fields: [id_alat], references: [id_alat])
   id_alat String
   status String
   hasil_uji String
+  transaksi transaksi[]
 }
 
 model transaksi {
   id_transaksi String @id @default(uuid())
-  id_pengujian String
-  id_penguji String
+  pengujian pengujian[]
+  penguji penguji[]
 }
 
 model penguji {
@@ -78,7 +91,10 @@ model penguji {
   username String @unique
   email String @unique
   nama_lengkap String
+  institusi institusi? @relation(fields: [id_institusi], references: [id_institusi])
   id_institusi String
   password String
   nomor String
+  photo String
+  transaksi transaksi[]
 }
