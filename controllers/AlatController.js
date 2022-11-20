@@ -16,6 +16,9 @@ const getAlatById = async (req, res) => {
         const response = await prisma.alat.findUnique({
             where:{
                 id_alat: req.params.id
+            }, select : {
+                id_inventor,
+                //belum paham cara ambil nama
             }
         })
         res.status(200).json(response)
