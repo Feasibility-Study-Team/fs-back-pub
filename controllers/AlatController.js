@@ -4,7 +4,11 @@ const prisma = new PrismaClient();
 
 const getAlat = async (req, res) => {
     try {
-        const response = await prisma.alat.findMany()
+        const response = await prisma.alat.findMany({
+            include : {
+                inventor: true
+            }
+        })
         res.status(200).json(response)
     } catch (error) {
         res.status(500).json({ msg: error.message })
