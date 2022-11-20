@@ -17,84 +17,84 @@ model admin {
 }
 
 model institusi {
-  id_institusi String @id @default(uuid())
+  id_institusi   String     @id @default(uuid())
   nama_institusi String
-  alamat String
-  nomor String
-  inventor inventor[]
-  penguji penguji[]
+  alamat         String
+  nomor          String
+  inventor       inventor[]
+  penguji        penguji[]
 }
 
 model inventor {
-  id_inventor String @id @default(uuid())
-  username String @unique
-  email String @unique
+  id_inventor  String     @id @default(uuid())
+  username     String     @unique
+  email        String     @unique
   nama_lengkap String
-  institusi institusi? @relation(fields: [id_institusi], references: [id_institusi])
+  institusi    institusi? @relation(fields: [id_institusi], references: [id_institusi])
   id_institusi String?
-  password String
-  nomor String
-  photo String
-  alat alat[]
+  password     String
+  nomor        String
+  photo        String
+  alat         alat[]
 }
 
 model alat {
-  id_alat String @id @default(uuid())
-  nama_alat String
+  id_alat        String      @id @default(uuid())
+  nama_alat      String
   deskripsi_alat String
-  inventor inventor? @relation(fields: [id_inventor], references: [id_inventor])
-  id_inventor String?
-  gambar_alat String
-  pengujian pengujian[]
+  inventor       inventor?   @relation(fields: [id_inventor], references: [id_inventor])
+  id_inventor    String?
+  gambar_alat    String
+  pengujian      pengujian[]
 }
 
 model aspek {
-  id_aspek String @id @default(uuid())
-  nama String
+  id_aspek  String      @id @default(uuid())
+  nama      String
   parameter parameter[]
   pengujian pengujian[]
 }
 
 model parameter {
-  id_parameter String @id @default(uuid())
-  nama String
-  aspek aspek @relation(fields: [id_aspek], references: [id_aspek])
-  id_aspek String
-  data_aspek data_aspek[]
+  id_parameter String       @id @default(uuid())
+  nama         String
+  aspek        aspek        @relation(fields: [id_aspek], references: [id_aspek])
+  id_aspek     String
+  data_aspek   data_aspek[]
 }
 
 model data_aspek {
-  id_data_aspek String @id @default(uuid())
-  nama String
-  parameter parameter @relation(fields: [id_parameter], references: [id_parameter])
-  id_parameter String
+  id_data_aspek String    @id @default(uuid())
+  nama          String
+  parameter     parameter @relation(fields: [id_parameter], references: [id_parameter])
+  id_parameter  String
 }
 
 model pengujian {
-  id_pengujian String @id @default(uuid())
-  aspek aspek[]
-  alat alat @relation(fields: [id_alat], references: [id_alat])
-  id_alat String
-  status String
-  hasil_uji String
-  transaksi transaksi[]
+  id_pengujian String      @id @default(uuid())
+  aspek        aspek[]
+  alat         alat        @relation(fields: [id_alat], references: [id_alat])
+  id_alat      String
+  status       String
+  hasil_uji    String
+  transaksi    transaksi[]
 }
 
 model transaksi {
-  id_transaksi String @id @default(uuid())
-  pengujian pengujian[]
-  penguji penguji[]
+  id_transaksi String      @id @default(uuid())
+  pengujian    pengujian[]
+  penguji      penguji[]
 }
 
 model penguji {
-  id_penguji String @id @default(uuid())
-  username String @unique
-  email String @unique
+  id_penguji   String      @id @default(uuid())
+  username     String      @unique
+  email        String      @unique
   nama_lengkap String
-  institusi institusi? @relation(fields: [id_institusi], references: [id_institusi])
+  institusi    institusi?  @relation(fields: [id_institusi], references: [id_institusi])
   id_institusi String
-  password String
-  nomor String
-  photo String
-  transaksi transaksi[]
+  password     String
+  nomor        String
+  photo        String
+  transaksi    transaksi[]
 }
