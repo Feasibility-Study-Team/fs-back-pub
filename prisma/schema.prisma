@@ -45,6 +45,7 @@ model alat {
   inventor       inventor?   @relation(fields: [id_inventor], references: [id_inventor])
   id_inventor    String?
   gambar_alat    String
+  pemasaran      Boolean
   pengujian      pengujian[]
 }
 
