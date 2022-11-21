@@ -1,10 +1,10 @@
 const express = require('express');
-const { 
-    getAspek, 
-    getAspekById, 
-    createAspek, 
-    updateAspek, 
-    deleteAspek 
+const {
+    getAspek,
+    getAspekById,
+    createAspek,
+    updateAspek,
+    deleteAspek
 } = require('../controllers/AspekController');
 
 const router = express.Router()

@@ -1,10 +1,10 @@
 const express = require('express');
-const { 
-    getPengujian, 
+const {
+    getPengujian,
     getPengujianById,
-    createPengujian, 
-    updatePengujian, 
-    deletePengujian 
+    createPengujian,
+    updatePengujian,
+    deletePengujian
 } = require('../controllers/PengujianController');
 
 const router = express.Router()

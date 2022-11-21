@@ -7,25 +7,25 @@ const getAspek = async (req, res) => {
         const response = await prisma.aspek.findMany()
         res.status(200).json(response)
     } catch (error) {
-        res.status(500).json({msg: error.message})
+        res.status(500).json({ msg: error.message })
     }
 }
 
 const getAspekById = async (req, res) => {
     try {
         const response = await prisma.aspek.findUnique({
-            where:{
+            where: {
                 id_aspek: req.params.id
             }
         })
         res.status(200).json(response)
     } catch (error) {
-        res.status(404).json({msg: error.message})
+        res.status(404).json({ msg: error.message })
     }
 }
 
 const createAspek = async (req, res) => {
-    const { nama_aspek } =req.body
+    const { nama_aspek } = req.body
     try {
         const aspek = await prisma.aspek.create({
             data: {
@@ -34,15 +34,15 @@ const createAspek = async (req, res) => {
         })
         res.status(201).json(aspek)
     } catch (error) {
-        res.status(400).json({msg: error.message})
+        res.status(400).json({ msg: error.message })
     }
 }
 
 const updateAspek = async (req, res) => {
-    const { nama_aspek } =req.body
+    const { nama_aspek } = req.body
     try {
         const aspek = await prisma.aspek.update({
-            where:{
+            where: {
                 id_aspek: req.params.id
             },
             data: {
@@ -51,20 +51,20 @@ const updateAspek = async (req, res) => {
         })
         res.status(200).json(aspek)
     } catch (error) {
-        res.status(400).json({msg: error.message})
+        res.status(400).json({ msg: error.message })
     }
 }
 
 const deleteAspek = async (req, res) => {
     try {
         const aspek = await prisma.aspek.delete({
-            where:{
+            where: {
                 id_aspek: req.params.id
             }
         })
         res.status(200).json(aspek)
     } catch (error) {
-        res.status(400).json({msg: error.message})
+        res.status(400).json({ msg: error.message })
     }
 }
 

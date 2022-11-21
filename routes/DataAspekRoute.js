@@ -1,10 +1,10 @@
 const express = require('express');
-const { 
-    getDataAspek, 
-    getDataAspekById, 
-    createDataAspek, 
-    updateDataAspek, 
-    deleteDataAspek 
+const {
+    getDataAspek,
+    getDataAspekById,
+    createDataAspek,
+    updateDataAspek,
+    deleteDataAspek
 } = require('../controllers/DataAspekController');
 
 const router = express.Router()

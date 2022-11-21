@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 const getAlat = async (req, res) => {
     try {
         const response = await prisma.alat.findMany({
-            include : {
+            include: {
                 inventor: true
             }
         })

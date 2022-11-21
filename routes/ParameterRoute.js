@@ -1,10 +1,10 @@
 const express = require('express');
-const { 
-    getParameter, 
-    getParameterById, 
-    createParameter, 
-    updateParameter, 
-    deleteParameter 
+const {
+    getParameter,
+    getParameterById,
+    createParameter,
+    updateParameter,
+    deleteParameter
 } = require('../controllers/ParameterController');
 
 const router = express.Router()

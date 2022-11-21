@@ -1,10 +1,10 @@
 const express = require('express');
-const { 
-    getTransaksi, 
-    getTransaksiById, 
-    createTransaksi, 
-    updateTransaksi, 
-    deleteTransaksi 
+const {
+    getTransaksi,
+    getTransaksiById,
+    createTransaksi,
+    updateTransaksi,
+    deleteTransaksi
 } = require('../controllers/TransaksiController');
 
 const router = express.Router()

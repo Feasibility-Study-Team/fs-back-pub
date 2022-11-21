@@ -19,7 +19,7 @@ const getPhotoInvestorById = async (req, res) => {
 
 const updatePhotoInvestorById = async (req, res) => {
     const { username } = req.body
-    const photoUrl = req.protocol + "://" + req.get("host") + "/inventor/:"+username+"/photo" + req.file.filename 
+    const photoUrl = req.protocol + "://" + req.get("host") + "/inventor/:" + username + "/photo/" + req.file.filename
     try {
         const inventor = await prisma.inventor.update({
             where: {
@@ -29,7 +29,7 @@ const updatePhotoInvestorById = async (req, res) => {
                 photo: photoUrl
             }
         })
-        res.status(200).json({image: photoUrl})
+        res.status(200).json({ image: photoUrl })
     } catch (error) {
         res.status(400).json({ msg: error.message })
     }

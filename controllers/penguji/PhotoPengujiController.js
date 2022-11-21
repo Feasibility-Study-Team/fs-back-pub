@@ -5,32 +5,32 @@ const prisma = new PrismaClient
 const getPhotoPengujiById = async (req, res) => {
     try {
         const response = await prisma.inventor.findUnique({
-            where:{
+            where: {
                 username: req.params.username
-            }, select : {
+            }, select: {
                 photo
             }
         })
         res.status(200).json(response)
     } catch (error) {
-        res.status(404).json({msg: error.message})
+        res.status(404).json({ msg: error.message })
     }
 }
 
 const updatePhotoPengujiById = async (req, res) => {
-    const { photo } =req.body
+    const { photo } = req.body
     try {
         const inventor = await prisma.inventor.update({
-            where:{
+            where: {
                 username: req.params.username
             },
             data: {
-                photo : photo
+                photo: photo
             }
         })
         res.status(200).json(inventor)
     } catch (error) {
-        res.status(400).json({msg: error.message})
+        res.status(400).json({ msg: error.message })
     }
 }
 

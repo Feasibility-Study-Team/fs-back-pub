@@ -3,7 +3,7 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const path = require('path');
 const InventorRoute = require('./routes/InventorRoute');
-const PengujiRoute =  require('./routes/PengujiRoute')
+const PengujiRoute = require('./routes/PengujiRoute')
 const AlatRoute = require('./routes/AlatRoute');
 const InstitusiRoute = require('./routes/InstitusiRoute');
 const AspekRoute = require('./routes/AspekRoute');
@@ -38,6 +38,6 @@ app.use(LoginRoute)
 app.use(PhotoInvestorRoute)
 app.use(PhotoPengujiRoute)
 
-app.listen(process.env.APP_PORT, ()=> {
+app.listen(process.env.APP_PORT, () => {
     console.log('Server berjalan pada port 3000');
 })
