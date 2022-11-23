@@ -44,9 +44,16 @@ model alat {
   deskripsi_alat String
   inventor       inventor?   @relation(fields: [id_inventor], references: [id_inventor])
   id_inventor    String?
-  gambar_alat    String
   pemasaran      Boolean
   pengujian      pengujian[]
+  photoAlat      photoAlat[]
+}
+
+model photoAlat {
+  id_photo String  @id @default(uuid())
+  photo    String
+  alat     alat?   @relation(fields: [id_alat], references: [id_alat])
+  id_alat  String?
 }
 
 model aspek {
