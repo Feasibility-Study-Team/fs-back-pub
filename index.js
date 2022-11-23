@@ -17,6 +17,8 @@ const RegisterRoute = require('./routes/RegisterRoute')
 const LoginRoute = require('./routes/LoginRoute')
 const PhotoInvestorRoute = require('./routes/inventor/PhotoInventorRoute');
 const PhotoPengujiRoute = require('./routes/penguji/PhotoPengujiRoute')
+const Dashboard = require('./routes/DashboardRoute')
+const AlatPage = require('./routes/AlatPageRoute')
 
 dotenv.config()
 
@@ -43,6 +45,8 @@ app.use(RegisterRoute)
 app.use(LoginRoute)
 app.use(PhotoInvestorRoute)
 app.use(PhotoPengujiRoute)
+app.use(Dashboard)
+app.use(AlatPage)
 
 app.listen(process.env.APP_PORT, () => {
     console.log('Server berjalan pada port 3000');
