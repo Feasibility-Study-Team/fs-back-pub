@@ -34,7 +34,8 @@ const createPenguji = async (req, res) => {
                 nama_lengkap: nama_lengkap,
                 id_institusi: id_institusi,
                 password: password,
-                nomor: nomor
+                nomor: nomor,
+                role: "Penguji"
             }
         })
         res.status(201).json(penguji)

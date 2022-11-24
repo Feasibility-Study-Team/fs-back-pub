@@ -25,12 +25,12 @@ model institusi {
   penguji        penguji[]
 }
 
-model role {
-  id_role   String     @id @default(uuid())
-  nama_role String
-  inventor  inventor[]
-  penguji   penguji[]
-}
+// model role {
+//   id_role   String     @id @default(uuid())
+//   nama_role String
+//   inventor  inventor[]
+//   penguji   penguji[]
+// }
 
 model inventor {
   id_inventor  String    @id @default(uuid())
@@ -42,8 +42,8 @@ model inventor {
   password     String
   nomor        String
   photo        String
-  role         role      @relation(fields: [id_role], references: [id_role])
-  id_role      String
+  // role         role      @relation(fields: [id_role], references: [id_role])
+  role      String
   alat         alat[]
 }
 
@@ -113,7 +113,7 @@ model penguji {
   password     String
   nomor        String
   photo        String
-  role         role        @relation(fields: [id_role], references: [id_role])
-  id_role      String
+  // role         role        @relation(fields: [id_role], references: [id_role])
+  role      String
   transaksi    transaksi[]
 }

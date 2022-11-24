@@ -36,7 +36,8 @@ const createInventor = async (req, res) => {
                 id_institusi: id_institusi,
                 password: password,
                 nomor: nomor,
-                photo: photo
+                photo: photo,
+                role: "Inventor"
             }
         })
         res.status(200).json(inventor)
