@@ -4,7 +4,15 @@ const prisma = new PrismaClient();
 
 const getPenguji = async (req, res) => {
     try {
-        const response = await prisma.penguji.findMany()
+        const response = await prisma.penguji.findMany({
+            include: {
+                institusi:{
+                    select:{
+                        nama_institusi: true
+                    }
+                }
+            }
+        })
         res.status(200).json(response)
     } catch (error) {
         res.status(500).json({ msg: error.message })
@@ -35,6 +43,7 @@ const createPenguji = async (req, res) => {
                 id_institusi: id_institusi,
                 password: password,
                 nomor: nomor,
+                photo: "",
                 role: "Penguji"
             }
         })

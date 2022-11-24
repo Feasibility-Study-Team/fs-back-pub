@@ -6,7 +6,15 @@ const getAlat = async (req, res) => {
     try {
         const response = await prisma.alat.findMany({
             include: {
-                inventor: true,
+                inventor: {
+                    include:{
+                        institusi: {
+                            select:{
+                                nama_institusi: true
+                            }
+                        }
+                    },            
+                },
                 photo_alat: true
             }
         })
@@ -22,7 +30,11 @@ const getAlatById = async (req, res) => {
             where: {
                 id_alat: req.params.id
             }, include: {
-                inventor: true,
+                inventor: {
+                    include:{
+                        institusi: true
+                    }
+                },
                 photo_alat: true
             }
         })

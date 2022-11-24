@@ -1,5 +1,8 @@
 const express = require('express');
 const cors = require('cors');
+const bodyParser = require('body-parser');
+const multer = require('multer');
+const upload = multer();
 const dotenv = require('dotenv');
 const path = require('path');
 const cookieParser = require('cookie-parser');
@@ -25,13 +28,16 @@ dotenv.config()
 
 const app = express()
 
-app.use('/',express.static(path.join(__dirname, "src")))
+// access folder public
+app.use('/',express.static(path.join(__dirname, "public")))
 
 app.use(cors({ credentials: true, origin: process.env.URL || '*' }))
 
-app.use(express.json())
+app.use(bodyParser.json())
 
-app.use(express.urlencoded({extended: true}))
+app.use(bodyParser.urlencoded({extended: true}))
+
+app.use(upload.array());
 
 app.use(InventorRoute)
 app.use(PengujiRoute)
@@ -51,5 +57,5 @@ app.use(AlatPage)
 // app.use(RoleRoute)
 
 app.listen(process.env.APP_PORT, () => {
-    console.log('Server berjalan pada port 3000');
+    console.log(`Server berjalan pada port ${process.env.APP_PORT}`);
 })
