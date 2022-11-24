@@ -5,7 +5,7 @@ const {
     createParameter,
     updateParameter,
     deleteParameter
-} = require('../controllers/ParameterController');
+} = require('../../controllers/admin/ParameterController');
 
 const router = express.Router()
 

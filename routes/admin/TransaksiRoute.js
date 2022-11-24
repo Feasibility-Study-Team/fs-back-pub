@@ -5,7 +5,7 @@ const {
     createTransaksi,
     updateTransaksi,
     deleteTransaksi
-} = require('../controllers/TransaksiController');
+} = require('../../controllers/admin/TransaksiController');
 
 const router = express.Router()
 

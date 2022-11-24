@@ -5,7 +5,7 @@ const {
     createPengujian,
     updatePengujian,
     deletePengujian
-} = require('../controllers/PengujianController');
+} = require('../../controllers/admin/PengujianController');
 
 const router = express.Router()
 

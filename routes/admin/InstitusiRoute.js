@@ -5,7 +5,7 @@ const {
     createInstitusi,
     updateInstitusi,
     deleteInstitusi
-} = require('../controllers/InstitusiController');
+} = require('../../controllers/admin/InstitusiController');
 
 const router = express.Router()
 

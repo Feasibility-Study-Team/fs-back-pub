@@ -5,7 +5,7 @@ const {
     createPenguji,
     updatePenguji,
     deletePenguji
-} = require('../controllers/PengujiController');
+} = require('../../controllers/admin/PengujiController');
 
 const router = express.Router()
 

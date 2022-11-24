@@ -5,7 +5,7 @@ const {
     createDataAspek,
     updateDataAspek,
     deleteDataAspek
-} = require('../controllers/DataAspekController');
+} = require('../../controllers/admin/DataAspekController');
 
 const router = express.Router()
 

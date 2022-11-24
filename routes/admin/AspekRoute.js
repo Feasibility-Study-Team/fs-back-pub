@@ -5,7 +5,7 @@ const {
     createAspek,
     updateAspek,
     deleteAspek
-} = require('../controllers/AspekController');
+} = require('../../controllers/admin/AspekController');
 
 const router = express.Router()
 

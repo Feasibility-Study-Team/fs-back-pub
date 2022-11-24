@@ -5,7 +5,7 @@ const {
     createInventor,
     updateInventor,
     deleteInventor
-} = require('../controllers/InventorController');
+} = require('../../controllers/admin/InventorController');
 
 const router = express.Router()
 
