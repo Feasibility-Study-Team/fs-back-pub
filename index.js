@@ -1,5 +1,8 @@
 const express = require('express');
 const cors = require('cors');
+const bodyParser = require('body-parser');
+const multer = require('multer');
+const upload = multer();
 const dotenv = require('dotenv');
 const path = require('path');
 const cookieParser = require('cookie-parser');
@@ -29,9 +32,13 @@ app.use('/',express.static(path.join(__dirname, "src")))
 
 app.use(cors({ credentials: true, origin: process.env.URL || '*' }))
 
-app.use(express.json())
+app.use(bodyParser.json())
 
-app.use(express.urlencoded({extended: true}))
+app.use(bodyParser.urlencoded({extended: true}))
+
+app.use(upload.array());
+// access folder public
+app.use(express.static('public'));
 
 app.use(InventorRoute)
 app.use(PengujiRoute)
