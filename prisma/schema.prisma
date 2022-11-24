@@ -25,31 +25,40 @@ model institusi {
   penguji        penguji[]
 }
 
+model role {
+  id_role   String     @id @default(uuid())
+  nama_role String
+  inventor  inventor[]
+  penguji   penguji[]
+}
+
 model inventor {
-  id_inventor  String     @id @default(uuid())
-  username     String     @unique
-  email        String     @unique
+  id_inventor  String    @id @default(uuid())
+  username     String    @unique
+  email        String    @unique
   nama_lengkap String
-  institusi    institusi? @relation(fields: [id_institusi], references: [id_institusi])
-  id_institusi String?
+  institusi    institusi @relation(fields: [id_institusi], references: [id_institusi])
+  id_institusi String
   password     String
   nomor        String
   photo        String
+  role         role      @relation(fields: [id_role], references: [id_role])
+  id_role      String
   alat         alat[]
 }
 
 model alat {
-  id_alat        String      @id @default(uuid())
+  id_alat        String       @id @default(uuid())
   nama_alat      String
   deskripsi_alat String
-  inventor       inventor?   @relation(fields: [id_inventor], references: [id_inventor])
+  inventor       inventor?    @relation(fields: [id_inventor], references: [id_inventor])
   id_inventor    String?
   pemasaran      Boolean
   pengujian      pengujian[]
-  photoAlat      photoAlat[]
+  photo_alat     photo_alat[]
 }
 
-model photoAlat {
+model photo_alat {
   id_photo String  @id @default(uuid())
   photo    String
   alat     alat?   @relation(fields: [id_alat], references: [id_alat])
@@ -99,10 +108,12 @@ model penguji {
   username     String      @unique
   email        String      @unique
   nama_lengkap String
-  institusi    institusi?  @relation(fields: [id_institusi], references: [id_institusi])
+  institusi    institusi   @relation(fields: [id_institusi], references: [id_institusi])
   id_institusi String
   password     String
   nomor        String
   photo        String
+  role         role        @relation(fields: [id_role], references: [id_role])
+  id_role      String
   transaksi    transaksi[]
 }
