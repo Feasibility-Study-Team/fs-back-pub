@@ -28,7 +28,8 @@ dotenv.config()
 
 const app = express()
 
-app.use('/',express.static(path.join(__dirname, "src")))
+// access folder public
+app.use('/',express.static(path.join(__dirname, "public")))
 
 app.use(cors({ credentials: true, origin: process.env.URL || '*' }))
 
@@ -37,8 +38,6 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
 
 app.use(upload.array());
-// access folder public
-app.use(express.static('public'));
 
 app.use(InventorRoute)
 app.use(PengujiRoute)
@@ -58,5 +57,5 @@ app.use(AlatPage)
 // app.use(RoleRoute)
 
 app.listen(process.env.APP_PORT, () => {
-    console.log('Server berjalan pada port 3000');
+    console.log(`Server berjalan pada port ${process.env.APP_PORT}`);
 })
