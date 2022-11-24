@@ -1,19 +1,21 @@
 const { PrismaClient } = require("@prisma/client");
-
+var CryptoJS = require("crypto-js");
 const prisma = new PrismaClient();
 
 const registerInventor = async (req, res) => {
-    const { username, email, nama_lengkap, id_institusi, password, nomor, photo } = req.body
     try {
+        const { username, email, nama_lengkap, id_institusi, password, nomor, role } = req.body
+        const hashPassword = CryptoJS.SHA3(password).toString
         const inventor = await prisma.inventor.create({
             data: {
                 username: username,
                 email: email,
                 nama_lengkap: nama_lengkap,
                 id_institusi: id_institusi,
-                password: password,
+                password: hashPassword,
                 nomor: nomor,
-                photo: photo
+                photo: "",
+                
             }
         })
         res.status(200).json(inventor)
