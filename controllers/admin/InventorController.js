@@ -5,7 +5,16 @@ const prisma = new PrismaClient()
 
 const getInventors = async (req, res) => {
     try {
-        const response = await prisma.inventor.findMany()
+        const response = await prisma.inventor.findMany({
+            include: {
+                alat: true,
+                institusi: {
+                    select: {
+                        nama_institusi: true
+                    }
+                }
+            }
+        })
         res.status(200).json(response)
     } catch (error) {
         res.status(500).json({ msg: error.message })
@@ -17,6 +26,14 @@ const getInventorById = async (req, res) => {
         const response = await prisma.inventor.findUnique({
             where: {
                 id_inventor: req.params.id
+            },
+            include: {
+                alat:true,
+                institusi: {
+                    select: {
+                        nama_institusi: true
+                    }
+                }
             }
         })
         res.status(200).json(response)
@@ -36,7 +53,7 @@ const createInventor = async (req, res) => {
                 id_institusi: id_institusi,
                 password: password,
                 nomor: nomor,
-                photo: photo,
+                photo: "",
                 role: "Inventor"
             }
         })

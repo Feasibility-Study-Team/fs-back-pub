@@ -7,7 +7,7 @@ const getAlat = async (req, res) => {
         const response = await prisma.alat.findMany({
             include: {
                 inventor: true,
-                photoAlat: true
+                photo_alat: true
             }
         })
         res.status(200).json(response)
@@ -23,7 +23,7 @@ const getAlatById = async (req, res) => {
                 id_alat: req.params.id
             }, include: {
                 inventor: true,
-                photoAlat: true
+                photo_alat: true
             }
         })
         res.status(200).json(response)
@@ -40,7 +40,7 @@ const createAlat = async (req, res) => {
                 nama_alat: nama_alat,
                 deskripsi_alat: deskripsi_alat,
                 id_inventor: id_inventor,
-                photoAlat: [""]
+                pemasaran: false
             }
         })
         res.status(201).json(alat)
@@ -50,7 +50,7 @@ const createAlat = async (req, res) => {
 }
 
 const updateAlat = async (req, res) => {
-    const { nama_alat, deskripsi_alat, id_inventor, gambar_alat, } = req.body
+    const { nama_alat, deskripsi_alat, id_inventor, photo_alat, pemasaran } = req.body
     try {
         const alat = await prisma.alat.update({
             where: {
@@ -60,7 +60,8 @@ const updateAlat = async (req, res) => {
                 nama_alat: nama_alat,
                 deskripsi_alat: deskripsi_alat,
                 id_inventor: id_inventor,
-                gambar_alat: gambar_alat,
+                photo_alat: photo_alat,
+                pemasaran: pemasaran
             }
         })
         res.status(200).json(alat)

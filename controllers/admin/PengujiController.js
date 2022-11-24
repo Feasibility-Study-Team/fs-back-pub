@@ -45,7 +45,7 @@ const createPenguji = async (req, res) => {
 }
 
 const updatePenguji = async (req, res) => {
-    const { username, email, nama_lengkap, id_institusi, password, nomor } = req.body
+    const { username, email, nama_lengkap, id_institusi, password, nomor, photo } = req.body
     try {
         const penguji = await prisma.penguji.update({
             where: {
@@ -57,7 +57,8 @@ const updatePenguji = async (req, res) => {
                 nama_lengkap: nama_lengkap,
                 id_institusi: id_institusi,
                 password: password,
-                nomor: nomor
+                nomor: nomor,
+                photo: photo
             }
         })
         res.status(200).json(penguji)

@@ -90,8 +90,7 @@ model data_aspek {
 model pengujian {
   id_pengujian String      @id @default(uuid())
   aspek        aspek[]
-  alat         alat        @relation(fields: [id_alat], references: [id_alat])
-  id_alat      String
+  alat         alat[]
   status       String
   hasil_uji    String
   transaksi    transaksi[]
