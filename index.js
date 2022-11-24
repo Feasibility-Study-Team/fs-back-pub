@@ -48,7 +48,7 @@ app.use(PhotoInvestorRoute)
 app.use(PhotoPengujiRoute)
 app.use(Dashboard)
 app.use(AlatPage)
-app.use(RoleRoute)
+// app.use(RoleRoute)
 
 app.listen(process.env.APP_PORT, () => {
     console.log('Server berjalan pada port 3000');
