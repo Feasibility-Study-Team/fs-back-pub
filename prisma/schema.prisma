@@ -43,7 +43,7 @@ model inventor {
   nomor        String
   photo        String
   // role         role      @relation(fields: [id_role], references: [id_role])
-  role      String
+  role         String
   alat         alat[]
 }
 
@@ -83,6 +83,8 @@ model parameter {
 model data_aspek {
   id_data_aspek String    @id @default(uuid())
   nama          String
+  tipe          String
+  value         String
   parameter     parameter @relation(fields: [id_parameter], references: [id_parameter])
   id_parameter  String
 }
@@ -113,6 +115,6 @@ model penguji {
   nomor        String
   photo        String
   // role         role        @relation(fields: [id_role], references: [id_role])
-  role      String
+  role         String
   transaksi    transaksi[]
 }
