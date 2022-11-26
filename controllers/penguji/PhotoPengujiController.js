@@ -18,14 +18,17 @@ const getPhotoPengujiById = async (req, res) => {
 }
 
 const updatePhotoPengujiById = async (req, res) => {
-    const { photo } = req.body
+    const { username } = req.params
+
+    const photoUrl = req.protocol + "://" + req.get("host") + "/images/" + req.file.filename
+
     try {
-        const inventor = await prisma.inventor.update({
+        const inventor = await prisma.penguji.update({
             where: {
-                username: req.params.username
+                username: username
             },
             data: {
-                photo: photo
+                photo: photoUrl
             }
         })
         res.status(200).json(inventor)
