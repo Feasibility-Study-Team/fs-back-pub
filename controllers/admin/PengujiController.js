@@ -24,6 +24,14 @@ const getPengujiById = async (req, res) => {
         const response = await prisma.penguji.findUnique({
             where: {
                 id_penguji: req.params.id
+            },
+            include: {
+                institusi: {
+                    select: {
+                        id_institusi: true,
+                        nama_institusi: true
+                    }
+                }
             }
         })
         res.status(200).json(response)
