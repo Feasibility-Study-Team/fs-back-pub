@@ -25,13 +25,6 @@ model institusi {
   penguji        penguji[]
 }
 
-// model role {
-//   id_role   String     @id @default(uuid())
-//   nama_role String
-//   inventor  inventor[]
-//   penguji   penguji[]
-// }
-
 model inventor {
   id_inventor  String    @id @default(uuid())
   username     String    @unique
@@ -42,7 +35,6 @@ model inventor {
   password     String
   nomor        String
   photo        String
-  // role         role      @relation(fields: [id_role], references: [id_role])
   role         String
   alat         alat[]
 }
@@ -84,7 +76,7 @@ model data_aspek {
   id_data_aspek String    @id @default(uuid())
   nama          String
   tipe          String
-  value         String
+  value         String?
   parameter     parameter @relation(fields: [id_parameter], references: [id_parameter])
   id_parameter  String
 }
@@ -114,7 +106,6 @@ model penguji {
   password     String
   nomor        String
   photo        String
-  // role         role        @relation(fields: [id_role], references: [id_role])
   role         String
   transaksi    transaksi[]
 }
