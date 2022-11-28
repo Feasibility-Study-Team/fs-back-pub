@@ -4,7 +4,15 @@ const prisma = new PrismaClient();
 
 const getAspek = async (req, res) => {
     try {
-        const response = await prisma.aspek.findMany()
+        const response = await prisma.aspek.findMany({
+            include:{
+                parameter: {
+                    include:{
+                        data_aspek: true
+                    }
+                }
+            }
+        })
         res.status(200).json(response)
     } catch (error) {
         res.status(500).json({ msg: error.message })
@@ -16,6 +24,9 @@ const getAspekById = async (req, res) => {
         const response = await prisma.aspek.findUnique({
             where: {
                 id_aspek: req.params.id
+            },
+            include:{
+                parameter: true
             }
         })
         res.status(200).json(response)
@@ -29,7 +40,7 @@ const createAspek = async (req, res) => {
     try {
         const aspek = await prisma.aspek.create({
             data: {
-                nama_aspek: nama_aspek
+                nama: nama_aspek
             }
         })
         res.status(201).json(aspek)
