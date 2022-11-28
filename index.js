@@ -1,11 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const multer = require('multer');
-const upload = multer();
 const dotenv = require('dotenv');
 const path = require('path');
-const cookieParser = require('cookie-parser');
 
 const InventorRoute = require('./routes/admin/InventorRoute');
 const PengujiRoute = require('./routes/admin/PengujiRoute')
@@ -22,20 +19,19 @@ const PhotoInvestorRoute = require('./routes/inventor/PhotoInventorRoute');
 const PhotoPengujiRoute = require('./routes/penguji/PhotoPengujiRoute')
 const Dashboard = require('./routes/DashboardRoute')
 const AlatPage = require('./routes/AlatPageRoute')
-const RoleRoute = require('./routes/admin/RoleRoute')
 
 dotenv.config()
 
 const app = express()
 
 // access folder public
-app.use('/',express.static(path.join(__dirname, "public")))
+app.use('/', express.static(path.join(__dirname, "public")))
 
 app.use(cors({ credentials: true, origin: process.env.URL || '*' }))
 
 app.use(bodyParser.json())
 
-app.use(bodyParser.urlencoded({extended: true}))
+app.use(bodyParser.urlencoded({ extended: true }))
 
 
 app.use(InventorRoute)
