@@ -6,7 +6,7 @@ const getPhotoInvestorById = async (req, res) => {
     try {
         const response = await prisma.inventor.findUnique({
             where: {
-                username: req.params.username
+                id_inventor: req.params.id
             }, select: {
                 photo
             }

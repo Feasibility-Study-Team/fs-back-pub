@@ -4,9 +4,9 @@ const prisma = new PrismaClient
 
 const getPhotoPengujiById = async (req, res) => {
     try {
-        const response = await prisma.inventor.findUnique({
+        const response = await prisma.penguji.findUnique({
             where: {
-                username: req.params.username
+                id_penguji: req.params.id
             }, select: {
                 photo
             }
