@@ -25,12 +25,14 @@ const getDataAspekById = async (req, res) => {
 }
 
 const createDataAspek = async (req, res) => {
-    const { nama_data_aspek, id_parameter } = req.body
+    const { nama_data_aspek, id_parameter, tipe, value } = req.body
     try {
         const data_aspek = await prisma.data_aspek.create({
             data: {
-                nama_data_aspek: nama_data_aspek,
-                id_parameter: id_parameter
+                nama: nama_data_aspek,
+                id_parameter: id_parameter,
+                tipe: tipe,
+                value: ""
             }
         })
         res.status(201).json(data_aspek)
@@ -40,7 +42,7 @@ const createDataAspek = async (req, res) => {
 }
 
 const updateDataAspek = async (req, res) => {
-    const { nama_data_aspek, id_parameter } = req.body
+    const { nama_data_aspek, id_parameter, tipe, value } = req.body
     try {
         const data_aspek = await prisma.data_aspek.update({
             where: {
@@ -48,7 +50,9 @@ const updateDataAspek = async (req, res) => {
             },
             data: {
                 nama_data_aspek: nama_data_aspek,
-                id_parameter: id_parameter
+                id_parameter: id_parameter,
+                tipe: tipe,
+                value: value
             }
         })
         res.status(200).json(data_aspek)
