@@ -19,9 +19,12 @@ const storage = multer.diskStorage({
     }
 })
 
-const upload = multer({ storage: storage })
+const upload = multer({
+    storage: storage,
+    dest: "public/images"
+})
 
-router.get('/penguji/:username/photo', getPhotoPengujiById)
-router.put('/penguji/:username/photo', upload.single('profile'), updatePhotoPengujiById)
+router.get('/penguji/:id/photo', getPhotoPengujiById)
+router.put('/penguji/:id/photo', upload.single('profile'), updatePhotoPengujiById)
 
 module.exports = router
