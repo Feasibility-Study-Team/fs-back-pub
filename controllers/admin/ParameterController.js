@@ -29,8 +29,8 @@ const createParameter = async (req, res) => {
     try {
         const parameter = await prisma.parameter.create({
             data: {
-                nama_parameter: nama_parameter,
-                id_aspek: id_aspek
+                nama: nama_parameter,
+                id_aspek: id_aspek,
             }
         })
         res.status(201).json(parameter)
@@ -47,8 +47,8 @@ const updateParameter = async (req, res) => {
                 id_parameter: req.params.id
             },
             data: {
-                nama_parameter: nama_parameter,
-                id_aspek: id_aspek
+                nama: nama_parameter,
+                id_aspek: id_aspek,
             }
         })
         res.status(200).json(parameter)
