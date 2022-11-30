@@ -6,10 +6,6 @@ const registerInventor = async (req, res) => {
     try {
         const { username, email, nama_lengkap, id_institusi, password, nomor } = req.body
         const hashPassword = CryptoJS.SHA3(password, { outputLength: 256 }).toString()
-        console.log("Hash")
-        console.log(hashPassword)
-        console.log("--")
-        console.log(password)
         const inventor = await prisma.inventor.create({
             data: {
                 username: username,

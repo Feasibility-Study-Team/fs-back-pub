@@ -26,7 +26,11 @@ const getAspekById = async (req, res) => {
                 id_aspek: req.params.id
             },
             include:{
-                parameter: true
+                parameter: {
+                    include: {
+                        data_aspek: true
+                    }
+                }
             }
         })
         res.status(200).json(response)
