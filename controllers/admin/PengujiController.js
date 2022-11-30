@@ -1,5 +1,5 @@
 const { PrismaClient } = require("@prisma/client");
-
+var CryptoJS = require("crypto-js")
 const prisma = new PrismaClient();
 
 const getPenguji = async (req, res) => {
@@ -42,6 +42,7 @@ const getPengujiById = async (req, res) => {
 
 const createPenguji = async (req, res) => {
     const { username, email, nama_lengkap, id_institusi, password, nomor } = req.body
+    const hashPassword = CryptoJS.SHA3(password, { outputLength: 256 }).toString()
     try {
         const penguji = await prisma.penguji.create({
             data: {
@@ -49,7 +50,7 @@ const createPenguji = async (req, res) => {
                 email: email,
                 nama_lengkap: nama_lengkap,
                 id_institusi: id_institusi,
-                password: password,
+                password: hashPassword,
                 nomor: nomor,
                 photo: "",
                 role: "Penguji"
