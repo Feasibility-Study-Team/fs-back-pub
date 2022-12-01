@@ -94,11 +94,11 @@ model temp_data {
 model uji {
   id          String   @id @default(uuid())
   id_alat     String
-  id_inventor String
+  id_inventor String?
   nilai       Int?
   Status      String
   alat        alat     @relation(fields: [id_alat], references: [id_alat])
-  inventor    inventor @relation(fields: [id_inventor], references: [id_inventor])
+  inventor    inventor? @relation(fields: [id_inventor], references: [id_inventor])
 }
 
 model pengujian {

@@ -9,7 +9,7 @@ const {
 const router = express.Router()
 
 router.get('/alat/:id', getAlatInventorById)
-router.get('/alat/:id/create', createAlatInventor)
+router.post('/alat/:id/create', createAlatInventor)
 router.put('/alat/:id/detail/:id_alat', updateAlatInventor)
 router.delete('/alat/:id/detail/:id_alat', deleteAlatInventor)
 
