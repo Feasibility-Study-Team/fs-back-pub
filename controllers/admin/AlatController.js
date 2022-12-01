@@ -24,12 +24,45 @@ const getAlat = async (req, res) => {
     }
 }
 
+const getProduct = async (req, res) => {
+    try {
+        const product = await prisma.alat.findMany({
+            where:{
+                pemasaran: true
+            }
+        })
+
+        if(product){
+            return res.status(200).json(product)
+        }
+
+        return res.status(400).json({msg: "error"})
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({msg: error.message})
+    }
+}
+
 const getAlatById = async (req, res) => {
     try {
         const response = await prisma.alat.findUnique({
             where: {
                 id_alat: req.params.id
             }, include: {
+                pengujian:{
+                    include:{
+                        transaksi:true,
+                        aspek:{
+                            include:{
+                                parameter:{
+                                    include:{
+                                        data_aspek: true
+                                    }
+                                }
+                            }
+                        },
+                    },
+                },
                 inventor: {
                     include:{
                         institusi: true
@@ -62,7 +95,7 @@ const createAlat = async (req, res) => {
 }
 
 const updateAlat = async (req, res) => {
-    const { nama_alat, deskripsi_alat, id_inventor, photo_alat, pemasaran } = req.body
+    const { nama_alat, deskripsi_alat, pemasaran } = req.body
     try {
         const alat = await prisma.alat.update({
             where: {
@@ -71,13 +104,12 @@ const updateAlat = async (req, res) => {
             data: {
                 nama_alat: nama_alat,
                 deskripsi_alat: deskripsi_alat,
-                id_inventor: id_inventor,
-                photo_alat: photo_alat,
                 pemasaran: pemasaran
             }
         })
         res.status(200).json(alat)
     } catch (error) {
+        console.log(error)
         res.status(400).json({ msg: error.message })
     }
 }
@@ -95,4 +127,4 @@ const deleteAlat = async (req, res) => {
     }
 }
 
-module.exports = { getAlat, getAlatById, createAlat, updateAlat, deleteAlat }
+module.exports = { getAlat, getAlatById, createAlat, updateAlat, deleteAlat, getProduct }

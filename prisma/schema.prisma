@@ -30,31 +30,34 @@ model inventor {
   username     String    @unique
   email        String    @unique
   nama_lengkap String
-  institusi    institusi @relation(fields: [id_institusi], references: [id_institusi])
   id_institusi String
   password     String
   nomor        String
   photo        String
   role         String
   alat         alat[]
+  uji          uji[]
+  institusi    institusi @relation(fields: [id_institusi], references: [id_institusi])
 }
 
 model alat {
-  id_alat        String       @id @default(uuid())
-  nama_alat      String
-  deskripsi_alat String
-  inventor       inventor?    @relation(fields: [id_inventor], references: [id_inventor])
-  id_inventor    String?
-  pemasaran      Boolean
-  pengujian      pengujian[]
-  photo_alat     photo_alat[]
+  id_alat          String       @id @default(uuid())
+  nama_alat        String
+  deskripsi_alat   Json
+  spesifikasi_alat Json?
+  id_inventor      String
+  pemasaran        Boolean
+  pengujian        pengujian[]
+  photo_alat       photo_alat[]
+  uji              uji[]
+  inventor         inventor     @relation(fields: [id_inventor], references: [id_inventor])
 }
 
 model photo_alat {
   id_photo String  @id @default(uuid())
   photo    String
-  alat     alat?   @relation(fields: [id_alat], references: [id_alat])
   id_alat  String?
+  alat     alat?   @relation(fields: [id_alat], references: [id_alat])
 }
 
 model aspek {
@@ -65,20 +68,37 @@ model aspek {
 }
 
 model parameter {
-  id_parameter String       @id @default(uuid())
+  id_parameter String @id @default(uuid())
   nama         String
-  aspek        aspek        @relation(fields: [id_aspek], references: [id_aspek])
   id_aspek     String
-  data_aspek   data_aspek[]
+  data         data[]
+  aspek        aspek  @relation(fields: [id_aspek], references: [id_aspek])
 }
 
-model data_aspek {
-  id_data_aspek String    @id @default(uuid())
-  nama          String
-  tipe          String
-  value         String?
-  parameter     parameter @relation(fields: [id_parameter], references: [id_parameter])
-  id_parameter  String
+model data {
+  id_data      String    @id @default(uuid())
+  nama         String
+  tipe         String
+  id_parameter String
+  parameter    parameter @relation(fields: [id_parameter], references: [id_parameter])
+}
+
+model temp_data {
+  id_temp_data String @id @default(uuid())
+  id_alat      String
+  id_data      String
+  type         String
+  value        String
+}
+
+model uji {
+  id          String   @id @default(uuid())
+  id_alat     String
+  id_inventor String
+  nilai       Int?
+  Status      String
+  alat        alat     @relation(fields: [id_alat], references: [id_alat])
+  inventor    inventor @relation(fields: [id_inventor], references: [id_inventor])
 }
 
 model pengujian {
@@ -101,11 +121,11 @@ model penguji {
   username     String      @unique
   email        String      @unique
   nama_lengkap String
-  institusi    institusi   @relation(fields: [id_institusi], references: [id_institusi])
   id_institusi String
   password     String
   nomor        String
   photo        String
   role         String
   transaksi    transaksi[]
+  institusi    institusi   @relation(fields: [id_institusi], references: [id_institusi])
 }
