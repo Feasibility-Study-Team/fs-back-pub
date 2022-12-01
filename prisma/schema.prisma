@@ -43,8 +43,8 @@ model inventor {
 model alat {
   id_alat          String       @id @default(uuid())
   nama_alat        String
-  deskripsi_alat   Json
-  spesifikasi_alat Json?
+  deskripsi_alat   String
+  spesifikasi_alat String?
   id_inventor      String
   pemasaran        Boolean
   pengujian        pengujian[]
