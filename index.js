@@ -21,6 +21,8 @@ const PhotoPengujiRoute = require('./routes/penguji/PhotoPengujiRoute')
 const Dashboard = require('./routes/DashboardRoute')
 const AlatPage = require('./routes/AlatPageRoute')
 
+const TempsRoute = require('./routes/inventor/TempinventorRoute')
+
 dotenv.config()
 
 const app = express()
@@ -51,6 +53,7 @@ app.use(PhotoPengujiRoute)
 app.use(Dashboard)
 app.use(AlatPage)
 app.use(AlatInventorRoute)
+app.use(TempsRoute)
 
 app.listen(process.env.APP_PORT, () => {
     console.log(`Server berjalan pada port ${process.env.APP_PORT}`);

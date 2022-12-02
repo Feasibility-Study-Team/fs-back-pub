@@ -25,14 +25,13 @@ const getDataAspekById = async (req, res) => {
 }
 
 const createDataAspek = async (req, res) => {
-    const { nama_data, id_parameter, tipe, value } = req.body
+    const { nama_data, id_parameter, tipe } = req.body
     try {
         const data = await prisma.data.create({
             data: {
                 nama: nama_data,
                 id_parameter: id_parameter,
                 tipe: tipe,
-                value: ""
             }
         })
         res.status(201).json(data)

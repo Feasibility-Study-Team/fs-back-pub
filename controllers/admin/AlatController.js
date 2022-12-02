@@ -56,7 +56,7 @@ const getAlatById = async (req, res) => {
                             include:{
                                 parameter:{
                                     include:{
-                                        data_aspek: true
+                                        data: true
                                     }
                                 }
                             }
@@ -73,6 +73,7 @@ const getAlatById = async (req, res) => {
         })
         res.status(200).json(response)
     } catch (error) {
+        console.log()
         res.status(404).json({ msg: error.message })
     }
 }
@@ -85,11 +86,12 @@ const createAlat = async (req, res) => {
                 nama_alat: nama_alat,
                 deskripsi_alat: deskripsi_alat,
                 id_inventor: id_inventor,
-                pemasaran: false
+                pemasaran: false,
             }
         })
         res.status(201).json(alat)
     } catch (error) {
+        console.log(error)
         res.status(400).json({ msg: error.message })
     }
 }
