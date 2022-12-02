@@ -8,7 +8,7 @@ const getAspek = async (req, res) => {
             include:{
                 parameter: {
                     include:{
-                        data_aspek: true
+                        data: true
                     }
                 }
             }
@@ -28,7 +28,7 @@ const getAspekById = async (req, res) => {
             include:{
                 parameter: {
                     include: {
-                        data_aspek: true
+                        data: true
                     }
                 }
             }
