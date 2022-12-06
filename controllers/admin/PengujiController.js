@@ -4,10 +4,13 @@ const prisma = new PrismaClient();
 
 const getPenguji = async (req, res) => {
     try {
-        const response = await prisma.penguji.findMany({
+        const response = await prisma.inventor.findMany({
+            where: {
+                role: "Penguji"
+            },
             include: {
-                institusi:{
-                    select:{
+                institusi: {
+                    select: {
                         nama_institusi: true
                     }
                 }
@@ -21,11 +24,19 @@ const getPenguji = async (req, res) => {
 
 const getPengujiById = async (req, res) => {
     try {
-        const response = await prisma.penguji.findUnique({
+        const response = await prisma.inventor.findFirst({
             where: {
-                id_penguji: req.params.id
+                AND: {
+                    id_inventor: req.params.id,
+                    role: "Penguji"
+                }
             },
             include: {
+                alat: {
+                    include:{
+                        uji: true
+                    }
+                },
                 institusi: {
                     select: {
                         id_institusi: true,
@@ -36,6 +47,7 @@ const getPengujiById = async (req, res) => {
         })
         res.status(200).json(response)
     } catch (error) {
+        console.log(error)
         res.status(404).json({ msg: error.message })
     }
 }

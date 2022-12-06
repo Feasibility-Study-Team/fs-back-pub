@@ -7,13 +7,13 @@ const getAlat = async (req, res) => {
         const response = await prisma.alat.findMany({
             include: {
                 inventor: {
-                    include:{
+                    include: {
                         institusi: {
-                            select:{
+                            select: {
                                 nama_institusi: true
                             }
                         }
-                    },            
+                    },
                 },
                 photo_alat: true
             }
@@ -27,19 +27,19 @@ const getAlat = async (req, res) => {
 const getProduct = async (req, res) => {
     try {
         const product = await prisma.alat.findMany({
-            where:{
+            where: {
                 pemasaran: true
             }
         })
 
-        if(product){
+        if (product) {
             return res.status(200).json(product)
         }
 
-        return res.status(400).json({msg: "error"})
+        return res.status(400).json({ msg: "error" })
     } catch (error) {
         console.log(error)
-        return res.status(500).json({msg: error.message})
+        return res.status(500).json({ msg: error.message })
     }
 }
 
@@ -49,13 +49,13 @@ const getAlatById = async (req, res) => {
             where: {
                 id_alat: req.params.id
             }, include: {
-                pengujian:{
-                    include:{
-                        transaksi:true,
-                        aspek:{
-                            include:{
-                                parameter:{
-                                    include:{
+                pengujian: {
+                    include: {
+                        transaksi: true,
+                        aspek: {
+                            include: {
+                                parameter: {
+                                    include: {
                                         data: true
                                     }
                                 }
@@ -64,7 +64,7 @@ const getAlatById = async (req, res) => {
                     },
                 },
                 inventor: {
-                    include:{
+                    include: {
                         institusi: true
                     }
                 },
@@ -80,6 +80,9 @@ const getAlatById = async (req, res) => {
 
 const createAlat = async (req, res) => {
     const { nama_alat, deskripsi_alat, id_inventor } = req.body
+
+    console.log(req.files, req.body)
+
     try {
         const alat = await prisma.alat.create({
             data: {
@@ -89,7 +92,21 @@ const createAlat = async (req, res) => {
                 pemasaran: false,
             }
         })
-        res.status(201).json(alat)
+
+        for (let index = 0; index < req.files.length; index++) {
+            const photoUrl = req.protocol + "://" + req.get("host") + "/images/" + req.files[index].filename
+            const img = await prisma.photo_alat.create({
+                data: {
+                    photo: photoUrl,
+                    id_alat: alat?.id_alat
+                }
+            })
+            if(img){
+                console.log(index, img)
+            }
+        }
+
+        res.status(200).json(alat)
     } catch (error) {
         console.log(error)
         res.status(400).json({ msg: error.message })
