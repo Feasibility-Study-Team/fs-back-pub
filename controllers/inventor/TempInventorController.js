@@ -32,6 +32,27 @@ const getTempId = async (req, res) => {
     }
 }
 
+const getTempUser = async (req, res) => {
+    const { alat, data} = req.params
+    try {
+        const find = await prisma.temp_data.findMany({
+            where:{
+                AND: {
+                    id_alat: alat,
+                    id_data: data
+                }
+            }
+        })
+
+        if(find){
+            return res.status(200).json(find) 
+        }
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({msg: error.message})
+    }
+}
+
 const createTemp = async (req, res) => {
     const {id_alat, id_data, type, value} = req.body
     try {
@@ -94,4 +115,4 @@ const deleteTemp = async (req, res) => {
     }
 }
 
-module.exports = {getTemps, getTempId, createTemp, updateTemp, deleteTemp}
+module.exports = {getTemps, getTempId, createTemp, updateTemp, deleteTemp, getTempUser}

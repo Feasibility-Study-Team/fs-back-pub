@@ -6,6 +6,9 @@ const prisma = new PrismaClient()
 const getInventors = async (req, res) => {
     try {
         const response = await prisma.inventor.findMany({
+            where:{
+                role: "Inventor"
+            },
             include: {
                 alat: true,
                 institusi: {
@@ -23,12 +26,18 @@ const getInventors = async (req, res) => {
 
 const getInventorById = async (req, res) => {
     try {
-        const response = await prisma.inventor.findUnique({
+        const response = await prisma.inventor.findFirst({
             where: {
-                id_inventor: req.params.id
+                id_inventor: req.params.id,
+                role: "Inventor"
             },
             include: {
-                alat:true,
+                alat:{
+                    include: {
+                        uji: true
+                    },
+
+                },
                 institusi: {
                     select: {
                         nama_institusi: true
@@ -86,6 +95,48 @@ const updateInventor = async (req, res) => {
     }
 }
 
+const updateToPenguji = async (req, res) => {
+    const { id } = req.params
+    try {
+        const update = await prisma.inventor.update({
+            where:{
+                id_inventor: id
+            },
+            data:{
+                role: "Penguji"
+            }
+        })
+
+        if(update){
+            return res.status(200).json(update)
+        }
+    } catch (error) {
+        console.log(error)
+        return res.status(400).json({ msg: error.message })
+    }
+}
+
+const updateToInventor = async (req, res) => {
+    const { id } = req.params
+    try {
+        const update = await prisma.inventor.update({
+            where:{
+                id_inventor: id
+            },
+            data:{
+                role: "Inventor"
+            }
+        })
+
+        if(update){
+            return res.status(200).json(update)
+        }
+    } catch (error) {
+        console.log(error)
+        return res.status(400).json({ msg: error.message })
+    }
+}
+
 const deleteInventor = async (req, res) => {
     try {
         const inventor = await prisma.inventor.delete({
@@ -99,4 +150,4 @@ const deleteInventor = async (req, res) => {
     }
 }
 
-module.exports = { getInventors, getInventorById, createInventor, updateInventor, deleteInventor }
+module.exports = { getInventors, getInventorById, createInventor, updateInventor, deleteInventor, updateToInventor, updateToPenguji }
