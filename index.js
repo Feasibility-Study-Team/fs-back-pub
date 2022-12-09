@@ -23,6 +23,7 @@ const AlatPage = require('./routes/AlatPageRoute')
 
 const TempsRoute = require('./routes/inventor/TempinventorRoute')
 const UjiRoute = require('./routes/admin/UjiRoute')
+const OverviewRoute = require('./routes/admin/OverviewRoute')
 
 dotenv.config()
 
@@ -56,6 +57,7 @@ app.use(AlatPage)
 app.use(AlatInventorRoute)
 app.use(TempsRoute)
 app.use(UjiRoute)
+app.use(OverviewRoute)
 
 app.listen(process.env.APP_PORT, () => {
     console.log(`Server berjalan pada port ${process.env.APP_PORT}`);

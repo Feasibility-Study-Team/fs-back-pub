@@ -23,20 +23,20 @@ const getTempId = async (req, res) => {
             where: id
         })
 
-        if(response){
-            return res.status(200).json(response) 
+        if (response) {
+            return res.status(200).json(response)
         }
     } catch (error) {
         console.log(error)
-        return res.status(500).json({msg: error.message})
+        return res.status(500).json({ msg: error.message })
     }
 }
 
 const getTempUser = async (req, res) => {
-    const { alat, data} = req.params
+    const { alat, data } = req.params
     try {
         const find = await prisma.temp_data.findMany({
-            where:{
+            where: {
                 AND: {
                     id_alat: alat,
                     id_data: data
@@ -44,42 +44,50 @@ const getTempUser = async (req, res) => {
             }
         })
 
-        if(find){
-            return res.status(200).json(find) 
+        if (find) {
+            return res.status(200).json(find)
         }
     } catch (error) {
         console.log(error)
-        return res.status(500).json({msg: error.message})
+        return res.status(500).json({ msg: error.message })
     }
 }
 
 const createTemp = async (req, res) => {
-    const {id_alat, id_data, type, value} = req.body
+    const { id_alat, id_data, type, value } = req.body
     try {
+
+        var file;
+        if (type === "text") {
+            file = value
+        } else {
+            const fileUrl = req.protocol + "://" + req.get("host") + "/files/" + req.file.filename
+            file = fileUrl
+        }
         const temp = await prisma.temp_data.create({
-            data:{
+            data: {
                 id_alat: id_alat,
                 id_data: id_data,
                 type: type,
-                value: value
+                value: file
             }
         })
 
-        if(temp){
+        if (temp) {
             return res.status(200).json(temp)
         }
     } catch (error) {
         console.log(error)
-        return res.status(500).json({msg: error.message})
+        return res.status(500).json({ msg: error.message })
     }
 }
 
-const updateTemp = async (req, res) =>{
-    const {id_alat, id_data, type, value} = req.body
-    const {id} = req.params
+const updateTemp = async (req, res) => {
+    const { id_alat, id_data, type, value } = req.body
+    const { id } = req.params
     try {
         const update = await prisma.temp_data.update({
-            where:{
+            where: {
                 id_temp_data: id
             },
             data: {
@@ -90,12 +98,12 @@ const updateTemp = async (req, res) =>{
             }
         })
 
-        if(update){
+        if (update) {
             return res.status(200).json(update)
         }
     } catch (error) {
         console.log(error)
-        return res.status(500).json({msg: error.message})
+        return res.status(500).json({ msg: error.message })
     }
 }
 
@@ -104,15 +112,15 @@ const deleteTemp = async (req, res) => {
     try {
         const deleteTemp = await prisma.temp_data.delete({
             where: {
-                id_temp_data : id
+                id_temp_data: id
             }
         })
 
         return res.status(200).json(deleteTemp)
     } catch (error) {
         console.log(error)
-        res.status(400).json({msg: error.message})
+        res.status(400).json({ msg: error.message })
     }
 }
 
-module.exports = {getTemps, getTempId, createTemp, updateTemp, deleteTemp, getTempUser}
+module.exports = { getTemps, getTempId, createTemp, updateTemp, deleteTemp, getTempUser }

@@ -29,6 +29,9 @@ const getProduct = async (req, res) => {
         const product = await prisma.alat.findMany({
             where: {
                 pemasaran: true
+            },
+            include:{
+                photo_alat: true
             }
         })
 
@@ -79,7 +82,7 @@ const getAlatById = async (req, res) => {
 }
 
 const createAlat = async (req, res) => {
-    const { nama_alat, deskripsi_alat, id_inventor } = req.body
+    const { nama_alat, deskripsi_alat, id_inventor, spesifikasi_alat } = req.body
 
     console.log(req.files, req.body)
 
@@ -88,6 +91,7 @@ const createAlat = async (req, res) => {
             data: {
                 nama_alat: nama_alat,
                 deskripsi_alat: deskripsi_alat,
+                spesifikasi_alat: spesifikasi_alat,
                 id_inventor: id_inventor,
                 pemasaran: false,
             }
